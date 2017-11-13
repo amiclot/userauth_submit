@@ -3,18 +3,18 @@ var orm = require("../config/orm.js");
 
 var cat = {
   all: function(cb) {
-    orm.all("submit", function(res) {
+    orm.all("submits", function(res) {
       cb(res);
     });
   },
   // The variables cols and vals are arrays.
   create: function(cols, vals, cb) {
-    orm.create("submit", cols, vals, function(res) {
+    orm.create("submits", cols, vals, function(res) {
       cb(res);
     });
   },
   update: function(objColVals, condition, cb) {
-    orm.update("submit", objColVals, condition, function(res) {
+    orm.update("submits", objColVals, condition, function(res) {
       cb(res);
     });
   }
