@@ -1,27 +1,24 @@
-SELECT * FROM user_auth_blog.posts;
+create database submitform;
 
 
-CREATE TABLE `users` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `mob_no` int(11) NOT NULL,
-  `user_name` varchar(20) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+use submitform;
+Drop table users;
 
-#should have asked for help on joining  tables, got bogged down in that
+CREATE TABLE users(
+    user_id INT NOT NULL AUTO_INCREMENT,
+	first_name text NOT NULL,
+    last_name text NOT NULL,
+	user_name varchar(20) NOT NULL,
+	password varchar(15) NOT NULL,
+    PRIMARY KEY ( user_id )
+    );
 
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `body` text NOT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  `UserId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `UserId` (`UserId`),
-  CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+CREATE TABLE submits(
+    submits_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL ,
+	email text NOT NULL,
+    comments text NOT NULL,
+    PRIMARY KEY ( submits_id ), 
+    FOREIGN KEY (user_id) REFERENCES users(user_id) 
+) ENGINE=INNODB;
 
